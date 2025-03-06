@@ -54,4 +54,68 @@ public class AccidentHistory {
     @PastOrPresent(message = "Reported date must be in the past or present!")
     @Column(nullable = false, updatable = false)
     private LocalDate reportedAt = LocalDate.now();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Cars getCar() {
+        return car;
+    }
+
+    public void setCar(Cars car) {
+        this.car = car;
+    }
+
+    public LocalDate getAccidentDate() {
+        return accidentDate;
+    }
+
+    public void setAccidentDate(LocalDate accidentDate) {
+        this.accidentDate = accidentDate;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public DamageSeverity getDamageSeverity() {
+        return damageSeverity;
+    }
+
+    public void setDamageSeverity(DamageSeverity damageSeverity) {
+        this.damageSeverity = damageSeverity;
+    }
+
+    public RepairStatus getRepairStatus() {
+        return repairStatus;
+    }
+
+    public void setRepairStatus(RepairStatus repairStatus) {
+        this.repairStatus = repairStatus;
+    }
+
+    public LocalDate getReportedAt() {
+        return reportedAt;
+    }
+
+    public void setReportedAt(LocalDate reportedAt) {
+        this.reportedAt = reportedAt;
+    }
 }

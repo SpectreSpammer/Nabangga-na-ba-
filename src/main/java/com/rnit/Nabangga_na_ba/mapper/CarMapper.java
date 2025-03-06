@@ -14,7 +14,7 @@ public class CarMapper {
         dto.setModelName(car.getModelName());
         dto.setColor(car.getColor());
         dto.setLocation(car.getLocation());
-        dto.setImageFileName(car.getImageFileName());
+        dto.setImageFileNames(car.getImageFileNames());
         dto.setCreatedAt(car.getCreatedAt());
         return dto;
     }
@@ -27,7 +27,7 @@ public class CarMapper {
         car.setModelName(dto.getModelName());
         car.setColor(dto.getColor());
         car.setLocation(dto.getLocation());
-        car.setImageFileName(dto.getImageFileName());
+        car.setImageFileNames(dto.getImageFileNames());
         car.setCreatedAt(dto.getCreatedAt());
         return car;
     }
