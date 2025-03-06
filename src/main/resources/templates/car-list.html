@@ -40,7 +40,6 @@
             <td th:text="${car.color}"></td>
             <td th:text="${car.location}"></td>
             <td>
-            <td>
                 <div>
                     <img th:each="image, iterStat : ${car.imageFileNames}"
                          th:src="@{/images/{imageFileName}(imageFileName=${image})}"
@@ -49,8 +48,6 @@
                          data-bs-toggle="modal" data-bs-target="#imageModal"
                          th:attr="data-image=@{/images/{imageFileName}(imageFileName=${image})}">
                 </div>
-            </td>
-
             </td>
             <td style="white-space:nowrap">
                 <a class="btn btn-primary btn-sm"
@@ -83,48 +80,31 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        console.log("DOM fully loaded");
+      document.querySelectorAll(".img-thumbnail").forEach(img => {
+          console.log("Image src:", img.getAttribute("data-image")); // Debugging
 
-        // Image Modal Functionality
-        document.querySelectorAll(".img-thumbnail").forEach(img => {
-            console.log("Image found:", img.src); // Debugging
+          img.addEventListener("click", function () {
+              const modalImage = document.getElementById("modalImage");
+              modalImage.src = this.getAttribute("data-image");
+              console.log("Modal image set to:", modalImage.src); // Debugging
+          });
+      });
 
-            img.addEventListener("click", function () {
-                const modalImage = document.getElementById("modalImage");
-                const imageSrc = this.getAttribute("data-image");
+          // Search Functionality by Plate No
+          document.getElementById("plateSearch").addEventListener("input", function () {
+              const filter = this.value.toLowerCase();
+              const rows = document.querySelectorAll("#carsTable tbody tr");
 
-                if (imageSrc) {
-                    modalImage.src = imageSrc;
-                    console.log("Modal image updated:", modalImage.src); // Debugging
-                } else {
-                    console.warn("No image source found for modal.");
-                }
-            });
-        });
-
-        // Search Functionality by Plate No
-        const plateSearch = document.getElementById("plateSearch");
-        if (plateSearch) {
-            plateSearch.addEventListener("input", function () {
-                const filter = this.value.toLowerCase().trim();
-                const rows = document.querySelectorAll("#carsTable tbody tr");
-
-                rows.forEach(row => {
-                    const plateCell = row.querySelector(".plateNo");
-                    if (plateCell) {
-                        const plateText = plateCell.textContent.toLowerCase();
-                        row.style.display = plateText.includes(filter) ? "" : "none";
-                    }
-                });
-
-                console.log("Search filter applied:", filter);
-            });
-        } else {
-            console.warn("Search input field not found.");
-        }
-    });
+              rows.forEach(row => {
+                  const plateCell = row.querySelector(".plateNo");
+                  if (plateCell) {
+                      const plateText = plateCell.textContent.toLowerCase();
+                      row.style.display = plateText.includes(filter) ? "" : "none";
+                  }
+              });
+          });
+      });
 </script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
